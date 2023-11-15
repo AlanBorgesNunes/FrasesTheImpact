@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "304387095369",
+    "project_id": "frasessurpress",
+    "storage_bucket": "frasessurpress.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:304387095369:android:c60648fa2b391565aef898",
+        "android_client_info": {
+          "package_name": "com.app.frasestheimpact"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq1VhDOd20GTL8BPOfk1oy2Dkk3QevvD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

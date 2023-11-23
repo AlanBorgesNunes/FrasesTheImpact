@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditActivity">
+
+    <ImageView
+        android:id="@+id/image_receive"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="400dp"
+        android:visibility="gone"
+        android:layout_marginHorizontal="10dp"/>
+
+    <TextView
+        android:id="@+id/escolha_imagem"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:text="Choose an image!"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/ll_edite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SizeFont"
+            android:layout_gravity="center"/>
+        <SeekBar
+            android:id="@+id/more_txt"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            android:layout_marginStart="5dp"
+            />
+
+        <TextView
+            android:id="@+id/chama_cor"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:gravity="center"
+            android:text="ColorText"
+            android:layout_gravity="center"/>
+        <com.skydoves.colorpickerview.ColorPickerView
+            android:id="@+id/more_cor"
+            android:layout_width="140dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:backgroundTint="#e9e9e9"
+            android:textColor="@color/black"
+            android:elevation="10dp"
+            android:text="Change"
+            android:drawableLeft="@drawable/baseline_image_search_24" />
+
+        <Button
+            android:id="@+id/btn_compartilhar"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:backgroundTint="#e9e9e9"
+            android:textColor="@color/black"
+            android:elevation="10dp"
+            android:text="Share"
+            android:drawableLeft="@drawable/baseline_share_24"
+            android:layout_marginStart="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="or"
+            android:textSize="16sp"/>
+
+        <View
+            android:layout_width="120dp"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/frase_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="frase"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/share_frase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="60dp"
+            android:text="Just the sentence"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/baseline_share_24"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:backgroundTint="#e9e9e9"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

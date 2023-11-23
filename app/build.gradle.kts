@@ -23,6 +23,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -81,5 +82,11 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.6.2")
 
     implementation ("com.airbnb.android:lottie:4.1.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    implementation("com.github.skydoves:colorpickerview:2.3.0")
+
 
 }

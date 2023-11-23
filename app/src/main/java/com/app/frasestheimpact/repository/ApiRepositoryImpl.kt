@@ -1,5 +1,6 @@
 package com.app.frasestheimpact.repository
 
+import android.util.Log
 import com.app.frasestheimpact.utlis.ApiService
 import com.app.frasestheimpact.utlis.DadosApi
 import com.app.frasestheimpact.utlis.DadosDaFrase
@@ -29,18 +30,21 @@ class ApiRepositoryImpl(
         }
     }
 
-    override suspend fun postFrases(result: DadosPostApi): UiState<DadosApi> {
-        try {
+    override suspend fun postFrases(result: DadosPostApi): UiState<String> {
+        return try {
             val response = apiService.postFrase(result)
             if (response.isSuccessful){
-                val dados = response.body() as DadosApi
-                return UiState.Success(dados)
+                UiState.Success(
+                    "Sucess ao postar frase!"
+                )
             }else{
-                return UiState.Failure("Erro ao postar frase!")
+                UiState.Failure(
+                    "Erro ao postar frase!")
             }
 
         }catch (e: Exception){
-            return UiState.Failure(e.localizedMessage)
+            Log.d("GARIBALDO", "postFrases: ${e.localizedMessage}")
+            UiState.Failure(e.localizedMessage)
         }
     }
 }

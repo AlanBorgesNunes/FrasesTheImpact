@@ -1,11 +1,13 @@
 package com.app.frasestheimpact.viewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.frasestheimpact.repository.ApiRepository
 import com.app.frasestheimpact.utlis.DadosApi
+import com.app.frasestheimpact.utlis.DadosDaFrase
 import com.app.frasestheimpact.utlis.DadosPostApi
 import com.muita.megasorte.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +24,8 @@ class ViewModelApi @Inject constructor(
         get() = _resultFrases
 
 
-    private val _postFrases = MutableLiveData<UiState<DadosApi>>()
-    val postFrases : LiveData<UiState<DadosApi>>
+    private val _postFrases = MutableLiveData<UiState<String>>()
+    val postFrases : LiveData<UiState<String>>
         get() = _postFrases
 
     fun getFrases(){

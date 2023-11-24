@@ -88,5 +88,8 @@ dependencies {
 
     implementation("com.github.skydoves:colorpickerview:2.3.0")
 
+    implementation("com.google.firebase:firebase-messaging-ktx:23.0.4")
+    implementation("com.google.firebase:firebase-inappmessaging-display-ktx:20.4.0")
+
 
 }

@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
             )
         }
 
-
     }
 
     private fun observers(){
@@ -80,7 +79,6 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
             }
         }
     }
-
     private fun obserrverGetFrases(){
         viewModelApi.resultFrases.observe(this){
             when(it){
@@ -108,7 +106,6 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
             }
         }
     }
-
     override fun clickShare(daFrase: DadosDaFrase) {
         val intent = Intent(this@MainActivity, EditActivity::class.java)
         intent.putExtra("FRASE", daFrase.frase)

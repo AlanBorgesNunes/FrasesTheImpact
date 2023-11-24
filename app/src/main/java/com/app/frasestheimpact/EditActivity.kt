@@ -49,18 +49,14 @@ class EditActivity : AppCompatActivity() {
 
         getFrase()
 
-
         binding.btnBuscar.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, 1)
         }
 
-
         binding.shareFrase.setOnClickListener {
             compartilharTexto(frase.toString() + "\n -$autor")
         }
-
-
 
         val snakBAr = binding.moreTxt
         snakBAr.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
@@ -78,13 +74,11 @@ class EditActivity : AppCompatActivity() {
 
         })
 
-
         binding.chamaCor.setOnClickListener {
             showItemPcture()
         }
 
     }
-
     private fun compartilharTexto(texto: String) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
@@ -95,7 +89,6 @@ class EditActivity : AppCompatActivity() {
             startActivity(chooser)
         }
     }
-
     private fun showItemPcture(){
         binding.moreCor.show()
         binding.moreCor.setColorListener(object : ColorListener{
@@ -110,12 +103,9 @@ class EditActivity : AppCompatActivity() {
 
         })
     }
-
     private fun obterFatorAjuste(): Float {
         return binding.moreTxt.progress.toFloat() / 10.0f
     }
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -147,12 +137,10 @@ class EditActivity : AppCompatActivity() {
 
         }
     }
-
     private fun exibirImagem(imagem: Bitmap){
         val imageView = binding.imageReceive
         imageView.setImageBitmap(imagem)
     }
-
     private fun atualizarImagemComFrase(fatorAjuste: Float, fontColor: Int) {
         val imagemComFrase = addTextInImage(imagemOriginal!!, frase.toString() + "-$autor", fatorAjuste, fontColor)
         binding.btnCompartilhar.setOnClickListener {
@@ -177,7 +165,6 @@ class EditActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun salvarImagemNoDispositivo(imagem: Bitmap): Uri? {
         // Implementar a lógica para salvar a imagem no dispositivo e obter a URI
         // Este exemplo usa a MediaStore para salvar a imagem no diretório de imagens
@@ -190,31 +177,23 @@ class EditActivity : AppCompatActivity() {
 
         return Uri.parse(uri)
     }
-
     private fun addTextInImage(imagem:Bitmap, text: String, fatorFloat: Float, fontColor: Int): Bitmap{
 
-        // Criar uma cópia da imagem original
         val imagemComFrase = imagem.copy(Bitmap.Config.ARGB_8888, true)
 
-        // Configurar o Paint para o texto
         paint.color = fontColor
         paint.textSize = 50f * fatorFloat
 
 
-        // Configurar o Canvas para desenhar na imagem
         val canvas = Canvas(imagemComFrase)
 
-        // Calcular a largura máxima para o texto (80% da largura da imagem)
         val maxWidth = imagemComFrase.width * 0.8f
 
-        // Quebrar a frase em várias linhas se necessário
         val linhas = quebrarFraseEmLinhas(text, paint, maxWidth)
 
-        // Calcular a posição para o texto (centrado na imagem verticalmente)
         val x = (imagemComFrase.width - maxWidth) / 2
         val yInicial = (imagemComFrase.height - linhas.size * (paint.descent() - paint.ascent())) / 2f
 
-        // Desenhar o texto no Canvas
         var y = yInicial
         for (linha in linhas) {
             val textWidth = paint.measureText(linha)

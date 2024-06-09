@@ -1,5 +1,7 @@
 package com.app.frasestheimpact.viewModels
 
+import android.app.Activity
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -27,6 +29,16 @@ class ViewModelApi @Inject constructor(
     private val _postFrases = MutableLiveData<UiState<String>>()
     val postFrases : LiveData<UiState<String>>
         get() = _postFrases
+
+
+
+    private val _adInter = MutableLiveData<UiState<String>>()
+    val adInter: LiveData<UiState<String>>
+        get() = _adInter
+
+    private val _adShowInter = MutableLiveData<UiState<String>>()
+    val adShowInter: LiveData<UiState<String>>
+        get() = _adShowInter
 
     fun getFrases(){
         viewModelScope.launch {
@@ -70,6 +82,24 @@ class ViewModelApi @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    fun inter(context: Context){
+        viewModelScope.launch {
+            _adInter.value = UiState.Loading
+            repository.loadInterstitialAd(context){
+                _adInter.value = it
+            }
+        }
+    }
+
+    fun interShow(activity: Activity){
+        viewModelScope.launch {
+            _adShowInter.value = UiState.Loading
+            repository.showInterstitialAd(activity){
+                _adShowInter.value = it
+            }
         }
     }
 

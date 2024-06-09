@@ -17,6 +17,8 @@ import com.app.frasestheimpact.databinding.ActivityEditBinding
 import com.app.frasestheimpact.utlis.hide
 import com.app.frasestheimpact.utlis.show
 import com.app.frasestheimpact.utlis.toast
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.skydoves.colorpickerview.AlphaTileView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.flag.BubbleFlag
@@ -41,6 +43,11 @@ class EditActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView2.loadAd(adRequest)
 
         frase = intent.getStringExtra("FRASE")
         autor = intent.getStringExtra("AUTOR")

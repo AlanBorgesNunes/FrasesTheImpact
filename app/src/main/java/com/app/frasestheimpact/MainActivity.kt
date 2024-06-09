@@ -1,5 +1,6 @@
 package com.app.frasestheimpact
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +17,8 @@ import com.app.frasestheimpact.utlis.hide
 import com.app.frasestheimpact.utlis.show
 import com.app.frasestheimpact.utlis.toast
 import com.app.frasestheimpact.viewModels.ViewModelApi
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.muita.megasorte.utils.UiState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,18 +39,28 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+
+
+        viewModelApi.inter(this)
         observers()
         obserrverGetFrases()
         viewModelApi.getFrases()
-        binding.rvMain.layoutManager = LinearLayoutManager(this)
-        binding.rvMain.adapter = adapter
         binding.resposta.setOnClickListener {
-            viewModelApi.postFrase(
-                DadosPostApi(
-                    frase = binding.frase.text.toString(),
-                    nomeAutor = binding.autor.text.toString()
+            if (binding.frase.text.toString().isBlank() ||
+                binding.autor.text.toString().isBlank()){
+                toast("Textos obrigatorrios em branco!!")
+            }else {
+                viewModelApi.postFrase(
+                    DadosPostApi(
+                        frase = binding.frase.text.toString(),
+                        nomeAutor = binding.autor.text.toString()
+                    )
                 )
-            )
+            }
         }
 
     }
@@ -74,6 +87,8 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
                     binding.progress.hide()
                     binding.frase.setText("")
                     binding.autor.setText("")
+                    obserrverGetFrases()
+                    viewModelApi.interShow(this)
                    toast(it.data)
                 }
             }
@@ -91,6 +106,7 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
                     binding.llFrasesFalsas.show()
                 }
                 is UiState.Success ->{
+                    list.clear()
                     val handler = Handler(Looper.getMainLooper())
 
                     handler.postDelayed(Runnable {
@@ -101,6 +117,8 @@ class MainActivity : AppCompatActivity(), AdapterFrases.ClickShare {
                     if (it.data.status == "OK"){
                         list.addAll(it.data.resposta!!)
                         adapter.updateList(list)
+                        binding.rvMain.layoutManager = LinearLayoutManager(this)
+                        binding.rvMain.adapter = adapter
                     }
                 }
             }
